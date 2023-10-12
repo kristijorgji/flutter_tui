@@ -1,0 +1,27 @@
+{
+  "name": "AppIcons",
+  "css_prefix_text": "",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "96aafeab29734d1510805687f7695f8f",
+      "css": "facebook-circled",
+      "code": 61521,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "8e77706cab8d0f43231ad6e85e64d29d",
+      "css": "three_dots_vertical",
+      "code": 59392,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M500 266.7C573.5 266.7 633.3 206.8 633.3 133.3S573.5 0 500 0 366.7 59.8 366.7 133.3 426.5 266.7 500 266.7ZM500 733.3C426.5 733.3 366.7 793.1 366.7 866.7S426.5 1000 500 1000 633.3 940.2 633.3 866.7 573.5 733.3 500 733.3ZM500 366.7C426.5 366.7 366.7 426.5 366.7 500S426.5 633.3 500 633.3 633.3 573.5 633.3 500 573.5 366.7 500 366.7Z",
+        "width": 1000
+      }
+    }
+  ]
+}
