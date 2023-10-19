@@ -72,6 +72,7 @@ class _UserViewState extends State<UserView> {
                 child: ResizableImagesSlider(
                   // force to re-render and reset indicator
                   imgList: _sortPhotosAndGetUrls(),
+                  isScrollable: _isScrollable,
                   pageController: PageController(initialPage: 0),
                   maxScale: 1.35,
                   initialHeight: MediaQuery.of(context).size.width * 1.2,
