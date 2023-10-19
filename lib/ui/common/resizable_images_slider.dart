@@ -13,6 +13,7 @@ class ResizableImagesSlider extends StatefulWidget {
   final double initialHeight;
   final double maxScale;
   final bool fillBoxWithoutAspectRatio;
+  final bool isScrollable;
 
   const ResizableImagesSlider({
     Key? key,
@@ -20,6 +21,7 @@ class ResizableImagesSlider extends StatefulWidget {
     this.pageController,
     this.initialPage = 0,
     this.maxScale = 1.25,
+    this.isScrollable = true,
     required this.initialHeight,
     required this.fillBoxWithoutAspectRatio,
   }) : super(key: key);
@@ -108,6 +110,9 @@ class _ResizableImagesSliderState extends State<ResizableImagesSlider> {
           alignment: AlignmentDirectional.topStart,
           children: <Widget>[
             PageView.builder(
+              physics: widget.isScrollable
+                  ? const AlwaysScrollableScrollPhysics()
+                  : const NeverScrollableScrollPhysics(),
               controller: _controller,
               itemCount: widget.imgList.length,
               itemBuilder: (context, index) {
