@@ -27,7 +27,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       appBarTheme: base.appBarTheme.copyWith(
         color: AppColors.Black,
       ),
-      accentColor: AppColors.Primary,
+      // accentColor: AppColors.Primary,
       textTheme: _buildTextTheme(base.textTheme),
     );
   }

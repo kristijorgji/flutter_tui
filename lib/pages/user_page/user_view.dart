@@ -21,10 +21,17 @@ final imageInfoTextStyle = GoogleFonts.teko(
   ],
 );
 
-class UserView extends StatelessWidget {
+class UserView extends StatefulWidget {
+
   const UserView({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<UserView> createState() => _UserViewState();
+}
+
+class _UserViewState extends State<UserView> {
 
   @override
   Widget build(BuildContext context) {
@@ -35,50 +42,84 @@ class UserView extends StatelessWidget {
     });
 
     return ListView(
+      shrinkWrap: true,
       controller: _scrollController,
+      physics: NeverScrollableScrollPhysics(),
       children: [
         Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 32),
-              child: ResizableImagesSlider(
-                key: UniqueKey(),
-                // force to re-render and reset indicator
-                imgList: _sortPhotosAndGetUrls(),
-                pageController: PageController(initialPage: 0),
-                maxScale: 1.35,
-                initialHeight: MediaQuery.of(context).size.width * 1.2,
-                fillBoxWithoutAspectRatio:
+            Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 32),
+                  child: ResizableImagesSlider(
+                    key: UniqueKey(),
+                    // force to re-render and reset indicator
+                    imgList: _sortPhotosAndGetUrls(),
+                    pageController: PageController(initialPage: 0),
+                    maxScale: 1.35,
+                    initialHeight: MediaQuery.of(context).size.width * 1.2,
+                    fillBoxWithoutAspectRatio:
                     true, // it is fine because we have square images height=width
-              ),
+                  ),
+                ),
+
+              ],
             ),
-            const Positioned(
-              bottom: -6,
-              child: UserOptions(),
+            Column(
+              children: [
+                SizedBox(height: MediaQuery.of(context).size.width*1.05,),
+                Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40),
+                      child: GestureDetector(
+                        onVerticalDragUpdate: (details){
+                          _scrollController.jumpTo(_scrollController.offset - details.primaryDelta!);
+                        },
+                        child: Container(
+                            padding: const EdgeInsets.only(
+                                left: Dimen.spacingMedium,
+                                right: Dimen.spacingMedium,
+                                top: Dimen.spacingMedium,
+                                bottom: Dimen.spacingExtraLarge),
+                            decoration: ShapeDecoration(
+                              shadows: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(.5), // Shadow color
+                                  spreadRadius: 1, // Spread radius
+                                  blurRadius: 5, // Blur radius
+                                ),
+                              ],
+                              color: AppColors.White,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.vertical(top: Radius.elliptical(30, 30)),
+                                  side: BorderSide(color: AppColors.LightGrey)),
+                            ),
+                            child: Column(children: [
+                              Table(
+                                  children: List<TableRow>.generate(
+                                    faker.randomGenerator.integer(30, min: 20),
+                                        (index) =>
+                                        TableRow(children: [Text('$index ${faker.animal.name()}')]),
+                                  ))
+                            ])),
+                      ),
+                    ),
+                    Positioned(
+                      top: -20,
+                      child: UserOptions(),
+                    ),
+
+                  ],
+                ),
+              ],
             )
           ],
         ),
-        Container(
-            padding: const EdgeInsets.only(
-                left: Dimen.spacingMedium,
-                right: Dimen.spacingMedium,
-                top: Dimen.spacingMedium,
-                bottom: Dimen.spacingExtraLarge),
-            decoration: const ShapeDecoration(
-              color: AppColors.White,
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.elliptical(30, 30)),
-                  side: BorderSide(color: AppColors.LightGrey)),
-            ),
-            child: Column(children: [
-              Table(
-                  children: List<TableRow>.generate(
-                faker.randomGenerator.integer(30, min: 20),
-                (index) =>
-                    TableRow(children: [Text('$index ${faker.animal.name()}')]),
-              ))
-            ]))
       ],
     );
   }
