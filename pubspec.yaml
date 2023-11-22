@@ -1,0 +1,120 @@
+name: single_app
+description: A new Flutter project.
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.15.0 <=3.7.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  kiwi: ^4.0.2
+  flutter_bloc: ^7.2.0
+  equatable: ^2.0.3
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.3
+#  flutter_platform_widgets: ^6.0.1
+  cached_network_image: ^3.0.0
+  http: ^0.13.3
+  json_annotation: ^4.0.1
+  intl: ^0.18.1
+  flutter_localizations:
+    sdk: flutter
+  logger: ^1.0.0
+  rxdart: ^0.27.1
+  flutter_secure_storage: ^7.0.1
+  shared_preferences: ^2.0.6
+  flutter_svg: ^1.0.3
+  url_launcher: ^6.0.6
+  image_picker: ^0.8.7
+  google_fonts: ^4.0.0
+  flutter_facebook_auth: ^5.0.7
+  sign_in_with_apple: ^3.0.0
+  image_cropper: ^1.4.1
+  package_info: ^2.0.2
+  socket_io_client: ^1.0.1
+  audioplayers: ^0.20.1
+  tuple: ^2.0.0
+  rate_my_app: ^1.1.0+1
+  location: ^4.3.0
+  curved_navigation_bar: ^1.0.3
+  flare_flutter: ^3.0.1
+  webview_flutter: ^3.0.1
+  permission_handler: ^9.2.0
+  share_plus: ^4.0.4
+  collection: ^1.15.0
+  flutter_cache_manager: ^3.1.2
+  characters: ^1.1.0
+  country_code_picker: ^2.0.2
+  carousel_slider: ^4.1.1
+  clock: ^1.1.0
+  uuid: ^3.0.6
+  dotted_border: ^2.0.0+3
+  camera: ^0.10.3+2
+  google_mlkit_face_detection: ^0.5.0
+  image: ^3.3.0
+  connectivity_plus: ^4.0.1
+  pin_code_fields: ^8.0.1
+  faker: ^2.1.0
+  flutter_platform_widgets: ^5.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  build_runner: ^2.0.4
+  json_serializable: ^6.1.4
+  kiwi_generator: ^4.0.1
+  intl_utils: ^2.4.0
+  flutter_launcher_icons: ^0.9.0
+  test: ^1.16.8
+  flutter_lints: ^1.0.4
+
+dependency_overrides:
+  # temporary until new version of this library and its parent country_code_picker is fixed
+  modal_bottom_sheet:
+    git:
+      url: https://github.com/danReynolds/modal_bottom_sheet.git
+      path: modal_bottom_sheet
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/animations/
+    - assets/audio/
+    - assets/google_fonts/
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  fonts:
+    - family: AppIcons
+      fonts:
+        - asset: assets/fonts/AppIcons.ttf
