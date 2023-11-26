@@ -35,92 +35,91 @@ class _UserViewState extends State<UserView> {
 
   @override
   Widget build(BuildContext context) {
-    final _scrollController = ScrollController();
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      _scrollController.animateTo(0,
-          duration: const Duration(milliseconds: 250), curve: Curves.ease);
-    });
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      child: CustomScrollView(
+        physics: BouncingScrollPhysics(),
+        shrinkWrap: true,
+        slivers: [
 
-    return ListView(
-      shrinkWrap: true,
-      controller: _scrollController,
-      physics: NeverScrollableScrollPhysics(),
-      children: [
-        Stack(
-          children: [
-            Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 32),
-                  child: ResizableImagesSlider(
-                    key: UniqueKey(),
-                    // force to re-render and reset indicator
-                    imgList: _sortPhotosAndGetUrls(),
-                    pageController: PageController(initialPage: 0),
-                    maxScale: 1.35,
-                    initialHeight: MediaQuery.of(context).size.width * 1.2,
-                    fillBoxWithoutAspectRatio:
-                    true, // it is fine because we have square images height=width
+          SliverAppBar(
+            expandedHeight: MediaQuery.of(context).size.width * 1.2,
+            stretch: true,
+            stretchTriggerOffset: 1.0,
+            flexibleSpace: FlexibleSpaceBar(
+              stretchModes: [StretchMode.zoomBackground],
+              background: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                    child: ResizableImagesSlider(
+                      key: UniqueKey(),
+                      imgList: _sortPhotosAndGetUrls(),
+                      pageController: PageController(initialPage: 0),
+                      maxScale: 1.35,
+                      initialHeight: MediaQuery.of(context).size.width * 1.2,
+                      fillBoxWithoutAspectRatio: true,
+                    ),
                   ),
-                ),
-
-              ],
-            ),
-            Column(
-              children: [
-                SizedBox(height: MediaQuery.of(context).size.width*1.05,),
-                Stack(
-                  alignment: Alignment.topCenter,
-                  children: [
-
-                    Padding(
-                      padding: const EdgeInsets.only(top: 40),
-                      child: GestureDetector(
-                        onVerticalDragUpdate: (details){
-                          _scrollController.jumpTo(_scrollController.offset - details.primaryDelta!);
-                        },
-                        child: Container(
-                            padding: const EdgeInsets.only(
-                                left: Dimen.spacingMedium,
-                                right: Dimen.spacingMedium,
-                                top: Dimen.spacingMedium,
-                                bottom: Dimen.spacingExtraLarge),
-                            decoration: ShapeDecoration(
-                              shadows: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(.5), // Shadow color
-                                  spreadRadius: 1, // Spread radius
-                                  blurRadius: 5, // Blur radius
-                                ),
-                              ],
-                              color: AppColors.White,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.vertical(top: Radius.elliptical(30, 30)),
-                                  side: BorderSide(color: AppColors.LightGrey)),
-                            ),
-                            child: Column(children: [
-                              Table(
-                                  children: List<TableRow>.generate(
-                                    faker.randomGenerator.integer(30, min: 20),
-                                        (index) =>
-                                        TableRow(children: [Text('$index ${faker.animal.name()}')]),
-                                  ))
-                            ])),
+                  Positioned(
+                    child: Container(
+                       height: 30,
+                      // height: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(50),
+                        ),
                       ),
                     ),
-                    Positioned(
-                      top: -20,
-                      child: UserOptions(),
-                    ),
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                  ),
+                  Positioned(child: UserOptions(),
+                    bottom: 0,
+                    left: 0,
+                    right: 0,),
 
+                ],
+              ),
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                Stack(
+                  children: [
+                    Container(
+                        padding: const EdgeInsets.only(
+                            left: Dimen.spacingMedium,
+                            right: Dimen.spacingMedium,
+                            top: Dimen.spacingMedium,
+                            bottom: Dimen.spacingExtraLarge),
+                        decoration: BoxDecoration(
+                          borderRadius:
+                                BorderRadius.vertical(top: Radius.elliptical(30, 30)),
+                          color: Colors.white,
+                        ),
+                        child: Column(children: [
+                          Table(
+                              children: List<TableRow>.generate(
+                                faker.randomGenerator.integer(30, min: 20),
+                                    (index) =>
+                                    TableRow(children: [Text('$index ${faker.animal.name()}')]),
+                              ))
+                        ])),
                   ],
-                ),
-              ],
-            )
-          ],
-        ),
-      ],
+                )
+              ]
+            ),
+          ),
+        ],
+      ),
     );
   }
 

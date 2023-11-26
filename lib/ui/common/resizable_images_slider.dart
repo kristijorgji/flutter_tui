@@ -111,28 +111,18 @@ class _ResizableImagesSliderState extends State<ResizableImagesSlider> {
               controller: _controller,
               itemCount: widget.imgList.length,
               itemBuilder: (context, index) {
-                return GestureDetector(
-                  onScaleStart: _onScaleStart,
-                  onScaleUpdate: _onScaleUpdate,
-                  onScaleEnd: _onScaleEnd,
-                  child: Transform(
-                      alignment: Alignment.centerLeft,
-                      transform: Matrix4.identity()..scale(_scale, _scale),
-                      child: CachedNetworkImage(
-                        imageUrl: widget.imgList[index],
-                        placeholder: (context, imageUrl) => SizedBox(
-                          child: const LoadingIndicator(),
-                          width: MediaQuery.of(context).size.width,
-                        ),
-                        errorWidget: (context, url, error) => const Icon(
-                          Icons.error,
-                          color: AppColors.Red,
-                        ),
-                        width: MediaQuery.of(context).size.width,
-                        fit: widget.fillBoxWithoutAspectRatio
-                            ? BoxFit.fill
-                            : BoxFit.fitWidth,
-                      )),
+                return CachedNetworkImage(
+                  imageUrl: widget.imgList[index],
+                  placeholder: (context, imageUrl) => SizedBox(
+                    child: const LoadingIndicator(),
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                  errorWidget: (context, url, error) => const Icon(
+                    Icons.error,
+                    color: AppColors.Red,
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  fit: BoxFit.cover,
                 );
               },
             ),
