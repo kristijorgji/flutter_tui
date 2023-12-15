@@ -45,9 +45,12 @@ class _UserViewState extends State<UserView> {
           SliverAppBar(
             expandedHeight: MediaQuery.of(context).size.width * 1.2,
             stretch: true,
+            toolbarHeight: 0,
             stretchTriggerOffset: 1.0,
+            collapsedHeight: 0,
             flexibleSpace: FlexibleSpaceBar(
               stretchModes: [StretchMode.zoomBackground],
+              collapseMode: CollapseMode.pin,
               background: Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
@@ -65,58 +68,52 @@ class _UserViewState extends State<UserView> {
                       fillBoxWithoutAspectRatio: true,
                     ),
                   ),
-                  Positioned(
-                    child: Container(
-                       height: 30,
-                      // height: 30,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(50),
-                        ),
-                      ),
-                    ),
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                  ),
+                  // Positioned(
+                  //   child: Container(
+                  //      height: 30,
+                  //     // height: 30,
+                  //     decoration: BoxDecoration(
+                  //       color: Colors.white,
+                  //       borderRadius: BorderRadius.vertical(
+                  //         top: Radius.circular(50),
+                  //       ),
+                  //
+                  //     ),
+                  //   ),
+                  //   bottom: -5,
+                  //   left: 0,
+                  //   right: 0,
+                  // ),
                   Positioned(child: UserOptions(),
-                    bottom: 0,
+                    bottom: -5,
                     left: 0,
                     right: 0,),
-
                 ],
               ),
             ),
           ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                Stack(
-                  children: [
-                    Container(
-                        padding: const EdgeInsets.only(
-                            left: Dimen.spacingMedium,
-                            right: Dimen.spacingMedium,
-                            top: Dimen.spacingMedium,
-                            bottom: Dimen.spacingExtraLarge),
-                        decoration: BoxDecoration(
-                          borderRadius:
-                                BorderRadius.vertical(top: Radius.elliptical(30, 30)),
-                          color: Colors.white,
-                        ),
-                        child: Column(children: [
-                          Table(
-                              children: List<TableRow>.generate(
-                                faker.randomGenerator.integer(30, min: 20),
-                                    (index) =>
-                                    TableRow(children: [Text('$index ${faker.animal.name()}')]),
-                              ))
-                        ])),
-                  ],
-                )
-              ]
-            ),
+          SliverToBoxAdapter(
+            child: Container(
+                padding: const EdgeInsets.only(
+                    left: Dimen.spacingMedium,
+                    right: Dimen.spacingMedium,
+                    top: Dimen.spacingMedium,
+                    bottom: Dimen.spacingExtraLarge),
+                decoration: BoxDecoration(
+
+                  borderRadius:
+                  BorderRadius.vertical(top: Radius.elliptical(30, 30)),
+                  color: Colors.white,
+                ),
+                child: Column(children: [
+                  Table(
+                      children: List<TableRow>.generate(
+                        faker.randomGenerator.integer(30, min: 20),
+                            (index) =>
+                            TableRow(children: [Text('$index ${faker.animal.name()}')]),
+                      ))
+                ]))
+
           ),
         ],
       ),

@@ -8,7 +8,7 @@ class UserOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
+      alignment: Alignment.bottomCenter,
       padding: const EdgeInsets.symmetric(vertical: 10),
       width: MediaQuery.of(context).size.width,
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: const [

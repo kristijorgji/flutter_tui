@@ -74,7 +74,8 @@ dependencies:
   connectivity_plus: ^4.0.1
   pin_code_fields: ^8.0.1
   faker: ^2.1.0
-  flutter_platform_widgets: ^5.0.0
+  flutter_platform_widgets: ^6.0.2
+#  flutter_platform_widgets: ^5.0.0
 
 dev_dependencies:
   flutter_test:
