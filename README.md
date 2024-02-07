@@ -4,13 +4,30 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Make sure to use the same Flutter version that this project requires! 
 
-A few resources to get you started if this is your first Flutter project:
+`3.7.12`
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+I do recommend you use [Flutter Version Manager](https://fvm.app/docs/getting_started/installation)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Then if you use Android Studio do the following:
+
+Settings -> Languages And Frameworks -> Flutter -> Flutter Sdk Path
+
+Insert there the relative path of .fvm/flutter_sdk
+For example `/pathToMyCode/flutter_tui/.fvm/flutter_sdk`
+
+If the required flutter version is missing you can install it like this:
+
+```shell
+fvm install 3.7.12
+```
+
+In your terminal for the project run
+```shell
+fvm use 3.7.12
+```
+
+Then you can run `fvm flutter` instead of just `flutter` in order to use the project specific flutter.
+
+For example, while being inside this project directory just do `fvm flutter pub get` and will use version 3.7.12 for the request.
